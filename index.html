@@ -149,7 +149,7 @@
                 let data = line.substring(9, 9 + byteCount * 2);
                 let checksum = parseInt(line.substring(9 + byteCount * 2), 16);
                 let sum = (byteCount + (address >> 8) + (address & 0xFF) + parseInt(recordType, 16));
-                checksum=(~checksum&0xff)+1;
+                checksum=((~checksum&0xff)+1)&0xff;
                 for (let i = 0; i < data.length; i += 2) {
                     let byte = parseInt(data.substring(i, i + 2), 16);
                     binArray.push(byte);
